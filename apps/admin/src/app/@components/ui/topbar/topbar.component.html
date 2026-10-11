@@ -1,0 +1,99 @@
+<p class="ro-note" role="alert" *ngIf="signoutError">{{signoutError}}</p>
+<nav class="topbar">
+  <a *ngIf="!showDropDownProjects" routerLink="/" class="brand"><span class="orbit-mark" aria-hidden="true"><span></span></span>Rouge One<span class="brand-caption">Mission control</span></a>
+  <div class="inline md:hidden">
+    @if (showDropDownProjects) {
+    <button type="button" class="navigation-button" aria-label="Open navigation" (click)="sidebarVisible = true"><svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="svg-icon"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+      />
+    </svg></button>
+    }
+  </div>
+  @if (showDropDownProjects) {
+  <p-select
+    [formControl]="selectedProject"
+    [options]="projects()"
+    optionLabel="name"
+    placeholder="Select a project"
+    class="project-select ro-dropdown"
+  ></p-select>
+  <p-button
+    icon="pi pi-plus"
+    [outlined]="true"
+    ariaLabel="Create project"
+    (click)="onCreateProject()"
+  ></p-button>
+  }
+  <button type="button" aria-label="Account menu"
+    class="account-button w-3rem h-3rem border-circle cursor-pointer font-bold bg-primary flex justify-content-center align-items-center"
+    [ngClass]="{ 'ml-auto': !showDropDownProjects }"
+    (click)="menu.toggle($event)"
+  >
+    @if(user) {
+    {{ (user.firstname?.[0] || user.email?.[0] || '') + (user.surname?.[0] || '') }}
+    }
+  </button>
+</nav>
+
+<p-drawer [(visible)]="sidebarVisible">
+  <ng-template pTemplate="header">
+    <p class="text-xl font-bold">Rouge One</p>
+  </ng-template>
+  <app-sidebar [responsiveMode]="true" (close)="onClose()" />
+</p-drawer>
+
+<p-menu #menu [model]="items" [popup]="true">
+  <ng-template pTemplate="item" let-item>
+    @if(item.label === 'account') {
+    <div class="flex align-items-center gap-2 py-2 px-1 mb-2 cursor-pointer">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="svg-icon"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+        />
+      </svg>
+
+      <span>Account setting</span>
+    </div>
+    } @else if(item.label === 'logout') {
+    <div
+      class="flex align-items-center gap-2 py-2 px-1 cursor-pointer"
+      (click)="onSignout()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="svg-icon"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
+        />
+      </svg>
+      <span>Logout</span>
+    </div>
+    }
+  </ng-template>
+</p-menu>

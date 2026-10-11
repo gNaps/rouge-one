@@ -1,0 +1,80 @@
+@use "./app/style/buttons.sass"
+@use "./app/style/dropdowns.sass"
+@use "./app/style/chips.sass"
+@use "./app/style/overlaypanels.sass"
+@use "./app/style/tables.sass"
+@use "./app/style/dashboard.sass"
+@use "../../../packages/brand/universe.css"
+@use "./app/style/mission-control.css"
+
+:root
+  color-scheme: light
+  --primary-color: var(--p-primary-color, #171717)
+  --primary: var(--primary-color)
+  --primary-color-text: var(--p-primary-inverse-color, white)
+  --surface-card: #ffffff
+  --surface-0: #fafafa
+  --surface-50: #f5f5f5
+  --surface-100: #eeeeee
+  --surface-200: #e5e5e5
+  --surface-300: #d4d4d4
+  --surface-400: #a3a3a3
+  --surface-500: #737373
+  --surface-600: #525252
+  --surface-700: #404040
+  --surface-800: #262626
+  --surface-900: #171717
+  --surface-ground: var(--surface-50)
+  --surface-section: var(--surface-card)
+  --surface-overlay: var(--surface-card)
+  --surface-hover: var(--surface-100)
+  --surface-border: #e2e2e2
+  --text-color: #171717
+  --text-color-secondary: #686868
+  --border-radius: 9px
+
+:root.rouge-dark
+  color-scheme: dark
+  --primary-color: var(--p-primary-color, #f5f5f5)
+  --primary-color-text: var(--p-primary-inverse-color, #0a0a0a)
+  --surface-card: #101010
+  --surface-0: #0b0b0b
+  --surface-50: #080808
+  --surface-100: #1a1a1a
+  --surface-200: #282828
+  --surface-300: #404040
+  --surface-400: #737373
+  --surface-500: #a3a3a3
+  --surface-600: #d4d4d4
+  --surface-700: #e5e5e5
+  --surface-800: #f5f5f5
+  --surface-900: #fafafa
+  --surface-border: #292929
+  --text-color: #f5f5f5
+  --text-color-secondary: #a3a3a3
+
+html, body
+  min-height: 100vh
+  width: 100%
+  margin: 0
+  background-color: var(--surface-50)
+
+body
+  color: var(--text-color)
+  font-family: "Helvetica Neue", Arial, system-ui, sans-serif
+  line-height: 1.5
+  -webkit-font-smoothing: antialiased
+
+button, input, select, textarea
+  font: inherit
+
+a
+  color: var(--primary)
+
+.svg-icon
+  height: 22px
+  width: 22px
+
+::selection
+  background: var(--primary-color)
+  color: var(--primary-color-text)

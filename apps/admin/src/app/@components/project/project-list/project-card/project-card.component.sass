@@ -1,0 +1,64 @@
+.project-card
+  display: flex
+  flex-direction: column
+  gap: 28px
+  height: 100%
+  box-sizing: border-box
+  padding: 26px
+  background: var(--surface-card)
+  border: 1px solid var(--surface-border)
+  border-radius: 16px
+  cursor: pointer
+  transition: border-color .15s, transform .15s
+  &:hover
+    border-color: var(--text-color-secondary)
+    transform: translateY(-3px)
+  &:focus-visible
+    outline: 2px solid var(--primary-color)
+    outline-offset: 4px
+
+.project-card-top, .project-card-bottom
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 12px
+
+.project-card-top .eyebrow
+  margin: 0
+
+.project-open
+  color: var(--text-color-secondary)
+  font-size: 22px
+  line-height: 1
+
+.project-card-bottom
+  border-top: 1px solid var(--surface-border)
+  padding-top: 18px
+  color: var(--text-color-secondary)
+  font-size: 11px
+
+.project-monogram
+  display: flex
+  align-items: center
+  justify-content: center
+  flex: 0 0 52px
+  width: 52px
+  height: 52px
+  background: var(--surface-100)
+  color: var(--text-color)
+  border: 1px solid var(--surface-border)
+  border-radius: 14px
+  font-size: 14px
+  font-weight: 500
+
+.project-info, .project-text
+  min-width: 0
+
+.project-text
+  overflow-wrap: anywhere
+
+@media (prefers-reduced-motion: reduce)
+  .project-card
+    transition: none
+    &:hover
+      transform: none

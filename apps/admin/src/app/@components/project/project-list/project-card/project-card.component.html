@@ -1,0 +1,25 @@
+<div
+  class="project-card"
+  role="button" tabindex="0"
+  (keydown.enter)="onOpenProject(project.id)"
+  (keydown.space)="$event.preventDefault(); onOpenProject(project.id)"
+  (click)="onOpenProject(project.id)"
+>
+  <div class="project-card-top"><span class="eyebrow">Application / {{ project.id }}</span><span class="project-open" aria-hidden="true">↗</span></div>
+  <div class="project-info flex align-items-center gap-3">
+    <div
+      class="project-monogram"
+    >
+      {{ project.name.slice(0, 2).toUpperCase() }}
+    </div>
+    <div class="project-text">
+      <p class="m-0 text-xl font-bold">{{ project.name }}</p>
+      <p class="m-0 text-sm text-color-secondary">{{ project.description }}</p>
+    </div>
+  </div>
+  <div class="project-card-bottom">
+    <span>Sign-in methods</span><div>
+      <app-project-card-social [project]="project" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<app-topbar [showDropDownProjects]="false" />
+<div class="px-3 md:px-8 pb-8">
+  <h1>Create new project</h1>
+  <app-project-form (save)="onSave($event)" />
+</div>

@@ -1,0 +1,99 @@
+/* Layout and interface details belonging to the monochrome universe theme. */
+.ro-page { max-width: 1320px; padding: clamp(20px, 4vw, 48px); }
+.ro-page.narrow { max-width: 1000px; }
+.ro-title { font-size: clamp(26px, 3vw, 38px); font-weight: 550; letter-spacing: -.05em; }
+.ro-header { margin-bottom: 28px; }
+.ro-header .eyebrow { margin-bottom: 8px; }
+.ro-subtitle, .ro-hint { line-height: 1.7; }
+.ro-panel { border-radius: 16px; box-shadow: none; background: linear-gradient(130deg, color-mix(in srgb, var(--text-color) 2%, var(--surface-card)), var(--surface-card) 50%); }
+.ro-panel h2 { font-size: 23px; font-weight: 500; letter-spacing: -.035em; }
+.ro-form input:not([type=checkbox]), .ro-form textarea { padding: 14px 16px; font-size: 14px; border-radius: 9px; }
+.ro-field { gap: 8px; }
+.ro-field label { font-size: 12px; }
+.ro-form section { gap: 24px; }
+.ro-steps { gap: 12px; padding-bottom: 24px; margin-bottom: 28px; }
+.ro-steps button { justify-content: flex-start; padding: 13px 15px; font-size: 12px; min-height: 48px; }
+.ro-steps button > span { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 11px; opacity: .65; }
+.ro-steps button[aria-current=step] { background: var(--primary-color); color: var(--primary-color-text); }
+.ro-button { min-height: 46px; padding: 12px 20px; font-size: 13px; border-radius: 9px; }
+.ro-button:hover:enabled { filter: brightness(.88); }
+.ro-actions { border-top: 1px solid var(--surface-border); padding-top: 24px; margin-top: 8px; }
+.ro-method { padding: 20px; border-radius: 12px; background: var(--surface-0); transition: border-color .15s; }
+.ro-method:has(input:checked) { border-color: var(--text-color-secondary); background: var(--surface-100); }
+.ro-method strong { font-size: 14px; font-weight: 550; }
+.ro-method small { font-size: 12px; line-height: 1.6; }
+.ro-badge { border: 1px solid var(--surface-border); background: var(--surface-0); border-radius: 99px; padding: 5px 10px; font: 10px/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; }
+.ro-code { padding: 24px; line-height: 1.8; border-radius: 12px; }
+.ro-note { border: 1px solid var(--surface-border); font-size: 13px; line-height: 1.6; }
+.ro-records li { padding: 20px 0; font-size: 14px; }
+.ro-empty { padding: 48px 24px; border-style: dashed; background: var(--surface-card); }
+.ro-empty p { max-width: 430px; margin: 0 auto; font-size: 14px; line-height: 1.8; }
+.empty-orbit { width: 56px; height: 56px; margin-bottom: 10px; }
+.empty-orbit::before, .empty-orbit::after { width: 52px; height: 22px; }
+.mission-hero { min-height: 360px; border: 1px solid #303030; border-radius: 20px; margin-bottom: 44px; padding: clamp(28px, 4vw, 48px); box-sizing: border-box; }
+.mission-copy { position: relative; max-width: 60%; z-index: 2; }
+.mission-hero .eyebrow { color: #aaa; margin-bottom: 28px; }
+.mission-hero h1 { margin: 0 0 20px; font-size: clamp(42px, 5.5vw, 72px); font-weight: 500; letter-spacing: -.065em; line-height: .98; }
+.mission-hero h1 span { color: #a0a0a0; }
+.mission-description { color: #b8b8b8; font-size: 14px; line-height: 1.8; margin: 0 0 28px; }
+.mission-meta { display: flex; flex-wrap: wrap; gap: 16px; font: 9px/1.6 ui-monospace, SFMono-Regular, Consolas, monospace; text-transform: uppercase; letter-spacing: .08em; color: #aaa; }
+.mission-meta span { display: inline-flex; align-items: center; gap: 8px; }
+.mission-meta span::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: #ccc; }
+.hero-coordinate { position: absolute; right: 28px; bottom: 24px; font: 8px ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .1em; color: #aaa; }
+.p-button { font-size: 13px; font-weight: 600; border-radius: 9px; padding: 12px 18px; }
+.p-button-icon-only { padding: 12px; }
+.ro-chip .p-chip.p-component { background: var(--surface-100) !important; color: var(--text-color) !important; border: 1px solid var(--surface-border); font-size: 11px; }
+.p-datatable .p-datatable-thead > tr > th { background: var(--surface-0); color: var(--text-color-secondary); font: 10px ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; padding: 18px 14px; }
+.p-datatable .p-datatable-tbody > tr > td { font-size: 13px; padding: 18px 14px; }
+.p-paginator { background: transparent; font-size: 12px; }
+@media (max-width: 760px) {
+  .mission-hero { min-height: 405px; padding: 28px 24px; margin-bottom: 32px; }
+  .mission-copy { max-width: 100%; }
+  .mission-hero h1 { font-size: clamp(38px, 12.8vw, 48px); }
+  .mission-description { max-width: 250px; font-size: 13px; }
+  .mission-meta { max-width: 165px; gap: 8px; }
+  .mission-hero .universe-art { right: -205px; top: auto; bottom: -173px; transform: scale(.62); transform-origin: center; opacity: .6; }
+  .hero-coordinate { display: none; }
+  .desktop-break { display: none; }
+  .ro-header { align-items: flex-start; }
+  .ro-steps { gap: 6px; }
+  .ro-steps button { flex-direction: column; justify-content: center; padding: 10px 5px; font-size: 11px; }
+  .ro-panel { padding: 24px 20px; }
+}
+
+.launch-back { display: inline-block; margin-bottom: 28px; color: var(--text-color-secondary); text-decoration: none; font-size: 12px; }
+.launch-back:hover { color: var(--text-color); }
+.launch-heading { align-items: center; margin-bottom: 32px; }
+.launch-mark { width: 80px; height: 80px; opacity: .5; margin-right: 20px; }
+.launch-mark::before, .launch-mark::after { width: 80px; height: 32px; }
+.launch-mark > span { width: 18px; height: 18px; }
+.launch-layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 24px; align-items: start; }
+.launch-brief { padding: 32px 28px; border: 1px solid #303030; border-radius: 16px; }
+.launch-brief .eyebrow { color: #a3a3a3; font-size: 9px; }
+.launch-brief h2 { font-size: 36px; letter-spacing: -.045em; font-weight: 500; line-height: 1.05; margin: 24px 0; }
+.launch-brief p:not(.eyebrow) { font-size: 13px; color: #a3a3a3; line-height: 1.8; }
+.launch-brief ol { list-style: none; padding: 0; margin: 32px 0 40px; }
+.launch-brief li { display: flex; gap: 14px; margin-top: 24px; font-size: 12px; }
+.launch-brief li > span { font: 10px ui-monospace, SFMono-Regular, Consolas, monospace; color: #929292; padding-top: 3px; }
+.launch-brief small { display: block; font-size: 11px; color: #a3a3a3; margin-top: 5px; }
+.launch-brief > .orbit-mark { opacity: .6; }
+.sidebar-observatory { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; margin: 28px 0; min-height: 140px; border: 1px solid #292929; border-radius: 12px; }
+.sidebar-observatory > span:last-child { color: #a3a3a3; text-transform: uppercase; letter-spacing: .15em; font: 8px ui-monospace, SFMono-Regular, Consolas, monospace; }
+@media (max-width: 1000px) { .launch-layout { grid-template-columns: minmax(0, 1fr); } .launch-brief { display: none; } }
+@media (max-width: 600px) { .launch-mark { display: none; } }
+.ro-access-editor { padding: 24px; margin: 24px 0; border: 1px solid var(--surface-border); border-radius: 12px; background: var(--surface-0); }
+.ro-access-editor > .ro-field, .ro-access-editor > .ro-method { margin-top: 20px; }
+.ro-access-search { margin: 24px 0 0; max-width: 420px; }
+.ro-access-search input, .ro-role-select { box-sizing: border-box; min-height: 44px; padding: 10px 12px; border: 1px solid var(--surface-border); border-radius: 8px; background: var(--surface-0); color: var(--text-color); width: 100%; font-size: 13px; }
+.ro-access-search input:focus-visible, .ro-role-select:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 3px; }
+.ro-role-select { min-width: 140px; max-width: 200px; }
+.ro-role-help { margin-bottom: 24px; }
+.ro-permission-picker { margin: 24px 0; padding: 20px; min-width: 0; border: 1px solid var(--surface-border); border-radius: 12px; }
+.ro-permission-picker legend { padding: 0 8px; font-size: 12px; font-weight: 600; }
+.ro-permission-option { display: flex; align-items: center; gap: 12px; margin-top: 16px; font-size: 12px; overflow-wrap: anywhere; }
+.ro-record-name, .ro-grants, .ro-record-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ro-grants { margin-top: 12px; }
+.ro-record-description { min-width: 0; flex: 1; overflow-wrap: anywhere; }
+.ro-grants code { overflow-wrap: anywhere; max-width: 100%; }
+.ro-record-actions .ro-button { padding: 8px 12px; min-height: 42px; font-size: 11px; }
+@media (max-width: 760px) { .ro-access-editor { padding: 20px 16px; } .ro-access-record { align-items: flex-start; flex-direction: column; } .ro-record-actions { margin-top: 8px; } }

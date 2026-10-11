@@ -1,0 +1,7 @@
+Rouge One
+Copyright 2024–2026 Gabriele Napoli and contributors.
+
+The repository contains original application code and framework-generated scaffolding.
+Distributed application bundles include third-party dependencies under their own licenses.
+See THIRD_PARTY_NOTICES.txt for redistributed license texts and docs/dependency-licenses.json for the inventory.
+PrimeIcons, PrimeFlex and PrimeNG assets remain subject to their upstream licenses.

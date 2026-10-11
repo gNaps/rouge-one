@@ -1,3 +1,12 @@
-node_modules
-# Keep environment variables out of version control
+node_modules/
+build/
+dist/
+.angular/
 .env
+.env.*
+!.env.example
+*.log
+backups/
+playwright-report/
+test-results/
+.local/

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="referrer" content="no-referrer"><title>Rouge One integration example</title><meta name="theme-color" content="#080808"><style>*{box-sizing:border-box}html{color-scheme:dark}body{font:14px/1.7 "Helvetica Neue",Arial,system-ui,sans-serif;color:#f5f5f5;background:#080808;max-width:960px;margin:0 auto;padding:clamp(20px,5vw,56px)}header{display:flex;align-items:center;gap:14px;margin-bottom:56px;font-size:20px;font-weight:600;letter-spacing:-.04em}header svg{width:40px;height:40px}.eyebrow{font:10px ui-monospace,monospace;letter-spacing:.15em;text-transform:uppercase;color:#aaa;margin:0 0 20px}main{position:relative;border:1px solid #292929;border-radius:20px;background:#101010;padding:clamp(24px,5vw,48px)}main::before{content:'';display:block;width:60px;height:20px;border:1px solid #737373;border-radius:50%;transform:rotate(-30deg);margin-bottom:36px}h1{font-size:clamp(32px,5vw,48px);font-weight:500;letter-spacing:-.055em;line-height:1.08;margin:0 0 20px}p{color:#aaa}input,button{font:inherit;padding:14px 16px;margin:8px 0;border-radius:9px;border:1px solid #333;min-height:48px}input{width:100%;background:#080808;color:#f5f5f5}input:focus{outline:1px solid #f5f5f5}button{background:#f5f5f5;color:#080808;cursor:pointer;margin-right:8px;font-size:13px;font-weight:600}button:focus-visible{outline:2px solid #f5f5f5;outline-offset:4px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#080808;padding:24px;border:1px solid #292929;border-radius:12px;font-size:12px}label{display:block;margin-top:28px;font-size:12px;font-weight:600}footer{display:flex;justify-content:space-between;gap:16px;margin:24px 0;font:9px/1.5 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em;color:#aaa}[role=status]:not(:empty){padding:16px;border:1px solid #404040;border-radius:9px;color:#f5f5f5}</style></head>
+<body><header><svg aria-hidden="true" viewBox="0 0 48 48"><g fill="none" stroke="currentColor"><ellipse cx="24" cy="24" rx="19" ry="7" transform="rotate(-42 24 24)"/><ellipse cx="24" cy="24" rx="19" ry="7" transform="rotate(42 24 24)" opacity=".5"/></g><circle cx="24" cy="24" r="5" fill="currentColor"/></svg>Rouge One</header><main><p class="eyebrow">Test flight / Application integration</p><h1>Rouge One integration example</h1><p>This application demonstrates PKCE sign-in and authenticated API requests. Tokens remain in memory.</p><label>Tenant code<input id="tenant" autocomplete="off"></label><button id="login">Sign in</button><button id="logout" hidden>Clear local session</button><p id="message" role="status"></p><pre id="profile" hidden></pre>
+</main><footer><span>Rouge One / Identity systems</span><span>Your first connection</span></footer>
+<script type="module">
+const field = document.querySelector('#tenant'), message = document.querySelector('#message'), profile = document.querySelector('#profile');
+const query = new URLSearchParams(location.search);
+field.value = query.get('tenant') || '';
+const encode = bytes => btoa(String.fromCharCode(...bytes)).replaceAll('+','-').replaceAll('/','_').replaceAll('=','');
+const random = () => encode(crypto.getRandomValues(new Uint8Array(32)));
+let accessToken = '';
+const request = async (url, options) => { const r = await fetch(url, options); const data = await r.json(); if (!r.ok) throw new Error(data.message || 'Request failed'); return data; };
+document.querySelector('#login').onclick = async () => {
+ try {
+  const tenant = field.value.trim(); if (!tenant) throw new Error('Enter a tenant code');
+  const config = await request(`/api/auth/${encodeURIComponent(tenant)}/config`);
+  const verifier = random(), state = random();
+  const codeChallenge = encode(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier))));
+  const redirect = `${location.origin}/example/`;
+  if (config.redirect_uri !== redirect) throw new Error(`Register ${redirect} as this project's callback to use the example.`);
+  localStorage.setItem('rouge_example_flow_'+state, JSON.stringify({tenant,verifier,state,redirect,expires:Date.now()+16*60*1000}));
+  location.assign(`/login/${encodeURIComponent(tenant)}?${new URLSearchParams({redirect_uri:redirect,code_challenge:codeChallenge,state})}`);
+ } catch(error) { message.textContent = error.message; }
+};
+document.querySelector('#logout').onclick = () => { accessToken = ''; profile.hidden = true; document.querySelector('#logout').hidden = true; message.textContent = 'Local session cleared'; };
+if (query.has('code')) {
+ const key = 'rouge_example_flow_'+query.get('state');
+ const saved = localStorage.getItem(key);
+ localStorage.removeItem(key);
+ history.replaceState(null,'',location.pathname);
+ try {
+  const flow = JSON.parse(saved || 'null');
+  if (!flow || flow.expires < Date.now() || flow.state !== query.get('state')) throw new Error('Invalid callback state');
+  field.value = flow.tenant;
+  const data = await request(`/api/auth/${encodeURIComponent(flow.tenant)}/token`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:query.get('code'),code_verifier:flow.verifier,redirect_uri:flow.redirect})});
+  accessToken = data.access_token;
+  const current = await request(`/api/auth/${encodeURIComponent(flow.tenant)}/me`, {headers:{Authorization:`Bearer ${accessToken}`}});
+  profile.textContent = JSON.stringify(current.user,null,2); profile.hidden = false;
+  document.querySelector('#logout').hidden = false; message.textContent = 'Signed in successfully';
+ } catch(error) { message.textContent = error.message; }
+}
+</script></body></html>

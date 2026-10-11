@@ -1,0 +1,3 @@
+@for(p of projects; track p.id) {
+<app-project-card [project]="p" (openProject)="onOpenProject($event)" />
+}

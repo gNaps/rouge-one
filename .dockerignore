@@ -1,0 +1,11 @@
+**/node_modules
+**/dist
+**/build
+**/.angular
+.git
+.env
+.env.*
+.local
+backups
+playwright-report
+test-results

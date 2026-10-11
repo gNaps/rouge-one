@@ -1,0 +1,33 @@
+<app-topbar [showDropDownProjects]="false" />
+<main class="ro-page">
+  <section class="mission-hero starfield">
+    <div class="mission-copy">
+      <p class="eyebrow">Rouge One / Mission control</p>
+      <h1>Your universe.<br /><span>Connected.</span></h1>
+      <p class="mission-description">One place to manage every application's identity.<br class="desktop-break" /> Build your next constellation.</p>
+      <div class="mission-meta"><span>Self-hosted authentication</span><span>{{ projects().length }} {{ projects().length === 1 ? 'project' : 'projects' }} in orbit</span></div>
+    </div>
+    <div class="universe-art" aria-hidden="true"><div class="orbit-track orbit-track-one"></div><div class="orbit-track orbit-track-two"></div><div class="orbit-track orbit-track-three"></div><div class="planet"></div><span class="satellite satellite-one"></span><span class="satellite satellite-two"></span><span class="cosmic-cross"></span></div>
+    <span class="hero-coordinate" aria-hidden="true">RO / 01 — IDENTITY SYSTEMS</span>
+  </section>
+  <div class="ro-header">
+    <div><p class="eyebrow">Your constellation</p><h2 class="ro-title">Your projects</h2><p class="ro-subtitle">Independent applications. One control center.</p></div>
+    <p-button
+      icon="pi pi-plus"
+      label="Create project"
+      ariaLabel="Create project"
+      (click)="onCreate()"
+    ></p-button>
+  </div>
+  <p class="ro-note" *ngIf="projectStore.loading()" role="status">Loading projects…</p>
+  <p class="ro-note" role="alert" *ngIf="projectStore.error()">{{projectStore.error()}}</p>
+  <section class="ro-panel ro-empty" *ngIf="!projectStore.loading() && !projectStore.error() && !projects().length">
+    <span class="empty-orbit orbit-mark" aria-hidden="true"><span></span></span><h2>Create your first project</h2><p>Your constellation starts here. Connect an application to its own sign-in page and users.</p>
+  </section>
+  @if(projects()) {
+  <app-project-list
+    [projects]="projects()"
+    (openProject)="onOpenProject($event)"
+  />
+  }
+</main>

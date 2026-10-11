@@ -1,0 +1,37 @@
+<form [formGroup]="projectForm" (ngSubmit)="onSave()" class="ro-panel ro-form">
+  <nav class="ro-steps" aria-label="Project setup steps">
+    <button type="button" [attr.aria-current]="step === 1 ? 'step' : null" (click)="step = 1"><span>1.</span> Project</button>
+    <button type="button" [attr.aria-current]="step === 2 ? 'step' : null" (click)="step = 2"><span>2.</span> Sign-in methods</button>
+    <button type="button" [attr.aria-current]="step === 3 ? 'step' : null" (click)="step = 3"><span>3.</span> Review</button>
+  </nav>
+  <section *ngIf="step === 1">
+    <div><h2>Project details</h2><p class="ro-hint">Give your application a name and choose where users return after signing in.</p></div>
+    <div class="ro-field"><label for="name">Project name</label><input id="name" formControlName="name" required placeholder="My application" /></div>
+    <div class="ro-field"><label for="description">Description <span class="ro-hint">(optional)</span></label><textarea id="description" formControlName="description" placeholder="What is this application for?"></textarea></div>
+    <div class="ro-field"><label for="redirect_url">Application callback URL</label><input id="redirect_url" type="url" formControlName="redirect_url" required aria-describedby="callback-help" /><p id="callback-help" class="ro-hint">The exact URL where your application receives the sign-in code. Keep the suggested URL to try the included example.</p></div>
+    <div class="ro-actions"><button class="ro-button" type="button" (click)="step = 2">Continue <i class="pi pi-arrow-right" aria-hidden="true"></i></button></div>
+  </section>
+  <section *ngIf="step === 2">
+    <div><h2>Sign-in methods</h2><p class="ro-hint">Choose how people can access your application.</p></div>
+    <label class="ro-method"><input type="checkbox" formControlName="is_password_active" /><span><strong>Email and password</strong><small>Users register and sign in with their own credentials.</small></span></label>
+    <label class="ro-method"><input type="checkbox" formControlName="is_magic_link_active" /><span><strong>Email magic link</strong><small>A sign-in link delivered by email. Requires SMTP.</small></span></label>
+    <label class="ro-method"><input type="checkbox" formControlName="is_google_active" /><span><strong>Google</strong><small>Sign in with a Google account.</small></span></label>
+    <ng-container *ngIf="projectForm.controls.is_google_active.value">
+      <div class="ro-field"><label for="google_client_id">Google client ID</label><input id="google_client_id" formControlName="google_client_id" autocomplete="off" /></div>
+      <div class="ro-field"><label for="google_secret_id">Google client secret</label><input id="google_secret_id" type="password" formControlName="google_secret_id" autocomplete="new-password" /></div>
+      <p class="ro-hint" *ngIf="project()?.google_configured">Google is configured. Leave the secret empty to keep the existing value.</p>
+      <p class="ro-hint">The integration page will show the callback to register with Google after saving.</p>
+    </ng-container>
+    <div class="ro-actions"><button class="ro-button secondary" type="button" (click)="step = 1">Back</button><button class="ro-button" type="button" (click)="step = 3">Review <i class="pi pi-arrow-right" aria-hidden="true"></i></button></div>
+  </section>
+  <section *ngIf="step === 3">
+    <div><h2>Ready to connect</h2><p class="ro-hint">Check your project before saving.</p></div>
+    <dl class="ro-details">
+      <dt>Project name</dt><dd>{{ projectForm.controls.name.value || 'Enter a project name' }}</dd>
+      <dt>Application callback</dt><dd><code>{{ projectForm.controls.redirect_url.value }}</code></dd>
+      <dt>Sign-in methods</dt><dd><span *ngIf="projectForm.controls.is_password_active.value">Email and password </span><span *ngIf="projectForm.controls.is_magic_link_active.value">Email magic link </span><span *ngIf="projectForm.controls.is_google_active.value">Google</span></dd>
+    </dl>
+    <p class="ro-hint">Saving prepares the project and its default user role. The next page includes your login URL and integration instructions.</p>
+    <div class="ro-actions"><button class="ro-button secondary" type="button" (click)="step = 2">Back</button><button class="ro-button" type="submit" [disabled]="projectForm.invalid || saving()">{{ saving() ? 'Saving…' : 'Save project' }}</button></div>
+  </section>
+</form>

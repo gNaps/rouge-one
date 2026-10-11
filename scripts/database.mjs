@@ -1,0 +1,41 @@
+import { spawn } from 'node:child_process';
+import { createReadStream, createWriteStream } from 'node:fs';
+import { readFile, mkdir, access, chmod } from 'node:fs/promises';
+import { pipeline } from 'node:stream/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { parseEnv } from 'node:util';
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+process.chdir(root);
+const [action, filename] = process.argv.slice(2).filter(a => !a.startsWith('--'));
+const external = process.argv.includes('--external');
+if (!['backup', 'restore'].includes(action)) throw new Error('Usage: pnpm backup [file] [--external] or pnpm restore file [--external]');
+if (action === 'restore' && !filename) throw new Error('Supply a backup file. Restore requires an empty database.');
+const configFile = process.env.CONFIG_FILE || '.env.local';
+const text = await readFile(configFile, 'utf8');
+const settings = parseEnv(text);
+const args = ['compose', '--env-file', configFile];
+if (external) args.push('-f', 'compose.yaml', '-f', 'compose.external.yaml');
+const connect = external ? ['--dbname', settings.DATABASE_URL] : ['--host', 'db', '--username', settings.POSTGRES_USER || 'rouge', '--dbname', settings.POSTGRES_DB || 'rouge_one'];
+const base = [...args, 'run', '--rm', '--no-deps', '-T', '--env', `PGPASSWORD=${settings.POSTGRES_PASSWORD}`, '--entrypoint'];
+const run = (tool, options, streams = 'pipe') => spawn('docker', [...base, tool, 'db', ...connect, ...options], { stdio: streams });
+if (action === 'backup') {
+  await mkdir('backups', { recursive: true, mode: 0o700 });
+  const out = path.resolve(filename || `backups/rouge-one-${new Date().toISOString().replaceAll(':','-')}.dump`);
+  const child = run('pg_dump', ['--format=custom', '--no-owner', '--no-acl']);
+  child.stderr.pipe(process.stderr);
+  const completion = new Promise((resolve,reject) => { child.on('error',reject); child.on('exit',code=>code===0?resolve():reject(new Error('Backup failed'))); });
+  await Promise.all([pipeline(child.stdout, createWriteStream(out,{flags:'wx',mode:0o600})), completion]);
+  await chmod(out, 0o600); console.log(`Backup saved: ${out}`);
+} else {
+  await access(filename);
+  const probe = run('psql', ['-At', '-v', 'ON_ERROR_STOP=1', '-c', "SELECT count(*) FROM pg_tables WHERE schemaname='public'"]);
+  let count = ''; probe.stdout.on('data', b=>count+=b); probe.stderr.pipe(process.stderr);
+  await new Promise((resolve,reject) => { probe.on('error',reject); probe.on('exit',code=>code===0?resolve():reject(new Error('Cannot inspect restore target'))); });
+  if (count.trim() !== '0') throw new Error('Restore target is not empty. Use a dedicated empty database; no data was changed.');
+  const restore = run('pg_restore', ['--single-transaction', '--exit-on-error', '--no-owner', '--no-acl']);
+  restore.stdout.pipe(process.stdout); restore.stderr.pipe(process.stderr);
+  const completion = new Promise((resolve,reject) => { restore.on('error',reject); restore.on('exit',code=>code===0?resolve():reject(new Error('Restore failed'))); });
+  await Promise.all([pipeline(createReadStream(filename),restore.stdin),completion]);
+  console.log('Restore completed. Start the matching application version.');
+}

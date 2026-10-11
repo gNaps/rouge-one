@@ -1,0 +1,34 @@
+<section class="ro-panel">
+  <div class="ro-header">
+    <div><p class="eyebrow">Access systems / Your project</p><h1 class="ro-title">{{ resource === 'roles' ? 'Roles' : 'Permissions' }}</h1><p class="ro-subtitle">{{ resource === 'roles' ? 'Define access for your users. Permissions can be shared across roles.' : 'Create the permission keys your application checks, such as articles:read.' }}</p></div>
+    <button class="ro-button" type="button" [disabled]="busy || loading" (click)="edit()">{{ resource === 'roles' ? 'Create role' : 'Create permission' }} <i class="pi pi-plus" aria-hidden="true"></i></button>
+  </div>
+  <p class="ro-note" role="alert" *ngIf="error">{{ error }}</p>
+  <p class="ro-note" role="status" *ngIf="notice">{{ notice }}</p>
+  <p class="ro-note" *ngIf="loading" role="status">Loading…</p>
+  <form class="ro-form ro-access-editor" *ngIf="editorOpen" (ngSubmit)="save()" #editor="ngForm">
+    <h2>{{ editingId ? 'Edit' : 'New' }} {{ resource === 'roles' ? 'role' : 'permission' }}</h2>
+    <div class="ro-field"><label for="access-name">{{ resource === 'roles' ? 'Role name' : 'Permission key' }}</label><input id="access-name" name="name" [(ngModel)]="name" required maxlength="100" [placeholder]="resource === 'roles' ? 'Editor' : 'articles:read'" /></div>
+    <ng-container *ngIf="resource === 'roles'">
+      <label class="ro-method"><input type="checkbox" name="default" [(ngModel)]="isDefault" [disabled]="originalDefault" /><span><strong>Default for new users</strong><small>New registrations receive this role. Existing users keep their current role.</small></span></label>
+      <fieldset class="ro-permission-picker"><legend>Permissions for this role</legend><p class="ro-hint">These permission keys will be included in the user's access token. Select up to 100.</p>
+        <label *ngFor="let permission of permissions" class="ro-permission-option"><input type="checkbox" [name]="'permission-' + permission.id" [ngModel]="selectedIds.has(permission.id)" (ngModelChange)="togglePermission(permission.id, $event)" /><code>{{ permission.name }}</code></label>
+        <p class="ro-hint" *ngIf="!permissions.length">Create permissions in the Permissions page, then assign them here.</p>
+      </fieldset>
+      <p class="ro-hint">Changing a role's name or permissions signs out users with that role. The updated access is included at their next sign-in.</p>
+    </ng-container>
+    <p class="ro-hint" *ngIf="resource === 'permissions'">Keys are case-sensitive and unique within this project. Renaming a key signs out users who receive it.</p>
+    <div class="ro-actions"><button type="button" class="ro-button secondary" [disabled]="busy" (click)="editorOpen = false">Cancel</button><button type="submit" class="ro-button" [disabled]="busy || editor.invalid || !name.trim() || selectedIds.size > 100">{{ busy ? 'Saving…' : resource === 'roles' ? 'Save role' : 'Save permission' }}</button></div>
+  </form>
+  <div class="ro-field ro-access-search" *ngIf="!loading"><label for="access-search">{{ resource === 'roles' ? 'Find a role' : 'Find a permission' }}</label><input id="access-search" type="search" [(ngModel)]="search" placeholder="Filter by name" /></div>
+  <ul class="ro-records" *ngIf="resource === 'roles'">
+    <li *ngFor="let role of filteredRoles" class="ro-access-record">
+      <div class="ro-record-description"><div class="ro-record-name"><strong>{{ role.name }}</strong><span class="ro-badge" *ngIf="role.is_default">Default</span><span class="ro-badge">{{ role.user_count }} {{ role.user_count === 1 ? 'user' : 'users' }}</span></div><div class="ro-grants"><code *ngFor="let permission of role.permissions" class="ro-badge">{{ permission.name }}</code><span class="ro-hint" *ngIf="!role.permissions.length">No permissions assigned</span></div></div>
+      <div class="ro-record-actions"><button class="ro-button secondary" type="button" [attr.aria-label]="'Edit role ' + role.name" [disabled]="busy" (click)="edit(role)">Edit</button><button class="ro-button secondary" type="button" *ngIf="!role.is_default" [attr.aria-label]="'Set ' + role.name + ' as default'" [disabled]="busy" (click)="makeDefault(role)">Set default</button><button class="ro-button secondary" type="button" [attr.aria-label]="'Delete role ' + role.name" [disabled]="busy || role.is_default || role.user_count > 0" [title]="role.is_default ? 'Choose another default role first' : role.user_count > 0 ? 'Reassign users before deleting this role' : 'Delete role'" (click)="remove(role)">Delete</button></div>
+    </li>
+  </ul>
+  <ul class="ro-records" *ngIf="resource === 'permissions'">
+    <li *ngFor="let permission of filteredPermissions"><code>{{ permission.name }}</code><div class="ro-record-actions"><button class="ro-button secondary" type="button" [attr.aria-label]="'Edit permission ' + permission.name" [disabled]="busy" (click)="edit(permission)">Edit</button><button class="ro-button secondary" type="button" [attr.aria-label]="'Delete permission ' + permission.name" [disabled]="busy" (click)="remove(permission)">Delete</button></div></li>
+  </ul>
+  <div class="ro-empty" *ngIf="!loading && (resource === 'roles' ? !filteredRoles.length : !filteredPermissions.length)"><span class="orbit-mark" aria-hidden="true"><span></span></span><p>{{ search ? 'No matching results.' : 'No ' + resource + ' configured yet.' }}</p></div>
+</section>

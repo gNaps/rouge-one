@@ -1,0 +1,71 @@
+<section class="ro-panel ro-users">
+  <div class="ro-header"><div><p class="eyebrow">Your constellation / People</p><h1 class="ro-title">Users</h1><p class="ro-subtitle">People registered in this project.</p></div><span class="ro-badge">{{ users().total }} {{ users().total === 1 ? 'user' : 'users' }}</span></div>
+  <p class="ro-note" role="alert" *ngIf="userStore.error()">{{userStore.error()}}</p>
+  <p class="ro-hint ro-role-help">Assign one role to each user. Its permissions are included in the access token at sign-in. Changing a role requires a new sign-in.</p>
+  <p class="ro-note" role="alert" *ngIf="roleError">{{ roleError }}</p>
+  <p class="ro-note" role="status" *ngIf="roleNotice">{{ roleNotice }}</p>
+  @if(users()) {
+  <p-table
+    [value]="users().data"
+    [lazy]="true"
+    (onLazyLoad)="onChangePage($event)"
+    dataKey="id"
+    [rows]="size"
+    [totalRecords]="users().total"
+    [paginator]="true"
+    [loading]="userStore.loading()"
+    [tableStyle]="{ 'min-width': '40rem' }"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="email">
+          User <p-sortIcon field="email"></p-sortIcon>
+        </th>
+        <th>Role</th>
+        <th>Provider</th>
+        <th>Last login</th>
+        <th>Joined Date</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>
+          <span class="flex align-items-center gap-2">
+            <div
+              class="w-3rem h-3rem border-circle bg-primary flex justify-content-center align-items-center"
+            >
+              @if(user.firstname && user.surname) {
+              {{ user.firstname[0] + user.surname[0] }}
+              } @else {
+              {{ user.email[0].toUpperCase() + user.email[1].toUpperCase() }}
+              }
+            </div>
+            <span>
+              <p class="m-0 font-semibold">
+                {{ user.firstname }} {{ user.surname }}
+              </p>
+              <p class="m-0 text-sm text-500">{{ user.email }}</p>
+            </span>
+          </span>
+        </td>
+        <td>
+          <select class="ro-role-select" [attr.aria-label]="'Role for ' + user.email" [value]="user.role?.id" (change)="assignRole(user, +$any($event.target).value, $any($event.target))" [disabled]="roleBusy || rolesLoading || !roles.length">
+            <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
+          </select>
+        </td>
+        <td>
+          {{ user.provider }}
+        </td>
+        <td>
+          {{ user.last_login | date : "dd/MM/yy HH:mm" }}
+        </td>
+        <td>
+          {{ user.created_at | date : "dd/MM/yy HH:mm" }}
+        </td>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage"><tr><td colspan="5" class="ro-empty">No users have signed in yet.</td></tr></ng-template>
+  </p-table>
+  }
+</section>

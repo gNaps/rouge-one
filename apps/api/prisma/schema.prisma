@@ -1,0 +1,147 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  email       String    @unique
+  password    String?
+  image       String?
+  firstname   String?
+  surname     String?
+  created_at  DateTime  @default(now())
+  updated_at  DateTime?
+  verified    Boolean   @default(false)
+  last_login  DateTime?
+  auth_version Int      @default(0)
+  count_login Int       @default(0)
+  is_provider Boolean   @default(false)
+  provider    String?
+  projects    Project[]
+}
+
+model Project {
+  id                   Int          @id @default(autoincrement())
+  google_client_id     String?
+  google_secret_id     String?
+  facebook_client_id   String?
+  facebook_secret_id   String?
+  twitch_client_id     String?
+  twitch_secret_id     String?
+  github_client_id     String?
+  github_secret_id     String?
+  is_google_active     Boolean      @default(false)
+  is_facebook_active   Boolean      @default(false)
+  is_twitch_active     Boolean      @default(false)
+  is_password_active   Boolean      @default(false)
+  is_magic_link_active Boolean      @default(false)
+  tenant_code          String       @unique @default(uuid())
+  redirect_url         String?
+  name                 String
+  description          String?
+  user                 User         @relation(fields: [user_id], references: [id])
+  user_id              Int
+  people               People[]
+  Role                 Role[]
+  Permission           Permission[]
+  MagicToken           MagicToken[]
+}
+
+model People {
+  id          Int       @id @default(autoincrement())
+  email       String
+  firstname   String?
+  surname     String?
+  password    String?
+  meta_data   Json?
+  created_at  DateTime  @default(now())
+  updated_at  DateTime?
+  verified    Boolean   @default(false)
+  last_login  DateTime?
+  auth_version Int      @default(0)
+  count_login Int       @default(0)
+  is_provider Boolean   @default(false)
+  provider    String?
+  project     Project   @relation(fields: [project_id], references: [id])
+  project_id  Int
+  role        Role      @relation(fields: [role_id, project_id], references: [id, project_id])
+  role_id     Int
+  image       String?
+
+  @@unique([project_id, email])
+}
+
+model Role {
+  id          Int          @id @default(autoincrement())
+  name        String
+  project     Project      @relation(fields: [project_id], references: [id])
+  project_id  Int
+  is_default  Boolean      @default(false)
+  permissions RolePermission[]
+  People      People[]
+
+  @@unique([id, project_id])
+  @@unique([project_id, name])
+}
+
+model Permission {
+  id         Int     @id @default(autoincrement())
+  name       String
+  roles      RolePermission[]
+  project    Project @relation(fields: [project_id], references: [id])
+  project_id Int
+
+  @@unique([id, project_id])
+  @@unique([project_id, name])
+}
+
+model RolePermission {
+  role_id       Int
+  permission_id Int
+  project_id    Int
+  role          Role       @relation(fields: [role_id, project_id], references: [id, project_id], onDelete: Cascade)
+  permission    Permission @relation(fields: [permission_id, project_id], references: [id, project_id], onDelete: Cascade)
+
+  @@id([role_id, permission_id])
+  @@index([permission_id])
+}
+
+model MagicToken {
+  id         Int      @id @default(autoincrement())
+  token      String
+  expired_at DateTime
+  email      String
+  project    Project? @relation(fields: [project_id], references: [id])
+  project_id Int?
+  for_user   Boolean
+  for_people Boolean
+}
+
+model Installation {
+  id          Int      @id
+  completedAt DateTime @default(now())
+}
+
+model SecurityToken {
+  hash        String   @id
+  purpose     String
+  subjectType String
+  subjectId   Int?
+  tenantId    Int?
+  data        Json
+  expiresAt   DateTime
+
+  @@index([expiresAt])
+  @@index([subjectType, subjectId, purpose])
+}

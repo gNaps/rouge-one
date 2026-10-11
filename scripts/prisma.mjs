@@ -1,0 +1,10 @@
+import { createRequire } from 'node:module';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const require = createRequire(path.join(root, 'apps/api/package.json'));
+require('dotenv').config({ path: process.env.CONFIG_FILE || path.join(root, '.env.local') });
+const cli = require.resolve('prisma/build/index.js');
+const result = spawnSync(process.execPath, [cli, ...process.argv.slice(2), '--schema', path.join(root, 'apps/api/prisma/schema.prisma')], { cwd: path.join(root, 'apps/api'), env: process.env, stdio: 'inherit' });
+process.exitCode = result.status || (result.error ? 1 : 0);

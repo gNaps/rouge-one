@@ -1,0 +1,29 @@
+name: Build release images
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: infra/Dockerfile
+          target: api
+          tags: rouge-one-api:0.1.0
+          outputs: type=docker,dest=/tmp/rouge-one-api.tar
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: infra/Dockerfile
+          target: web
+          tags: rouge-one-web:0.1.0
+          outputs: type=docker,dest=/tmp/rouge-one-web.tar
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rouge-one-0.1.0-images
+          path: /tmp/rouge-one-*.tar

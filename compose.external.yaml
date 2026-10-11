@@ -1,0 +1,11 @@
+# Requires Docker Compose 2.24.4+ for !reset and !override.
+services:
+  db:
+    profiles: [bundled-db]
+  migrate:
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?Set the external DATABASE_URL}
+    depends_on: !reset {}
+  api:
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?Set the external DATABASE_URL}

@@ -1,0 +1,1035 @@
+[
+  {
+    "name": "@angular/animations",
+    "version": "20.3.33",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/angular/angular.git",
+      "directory": "packages/animations"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@angular/cdk",
+    "version": "20.2.14",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/angular/components.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@angular/common",
+    "version": "20.3.33",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/angular/angular.git",
+      "directory": "packages/common"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@angular/compiler",
+    "version": "20.3.33",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/angular/angular.git",
+      "directory": "packages/compiler"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@angular/core",
+    "version": "20.3.33",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/angular/angular.git",
+      "directory": "packages/core"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@angular/forms",
+    "version": "20.3.33",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/angular/angular.git",
+      "directory": "packages/forms"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@angular/platform-browser",
+    "version": "20.3.33",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/angular/angular.git",
+      "directory": "packages/platform-browser"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@angular/platform-browser-dynamic",
+    "version": "20.3.33",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/angular/angular.git",
+      "directory": "packages/platform-browser-dynamic"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@angular/router",
+    "version": "20.3.33",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/angular/angular.git",
+      "directory": "packages/router"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@fastify/ajv-compiler",
+    "version": "4.0.7",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/ajv-compiler.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@fastify/cookie",
+    "version": "11.1.3",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/fastify-cookie.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@fastify/cors",
+    "version": "11.3.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/fastify-cors.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@fastify/deepmerge",
+    "version": "3.2.2",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/deepmerge.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@fastify/error",
+    "version": "4.2.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/fastify-error.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@fastify/fast-json-stringify-compiler",
+    "version": "5.1.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/fast-json-stringify-compiler.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@fastify/forwarded",
+    "version": "3.1.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/forwarded.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@fastify/merge-json-schemas",
+    "version": "0.2.2",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/merge-json-schemas.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@fastify/proxy-addr",
+    "version": "5.1.2",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/proxy-addr.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@fastify/rate-limit",
+    "version": "11.2.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/fastify-rate-limit.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@lukeed/ms",
+    "version": "2.0.2",
+    "license": "MIT",
+    "repository": "lukeed/ms",
+    "noticeIncluded": true
+  },
+  {
+    "name": "@pinojs/redact",
+    "version": "0.4.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/pinojs/redact.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@primeuix/styled",
+    "version": "0.7.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/primefaces/primeuix.git",
+      "directory": "packages/styled"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@primeuix/styles",
+    "version": "1.2.5",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/primefaces/primeuix.git",
+      "directory": "packages/styles"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@primeuix/themes",
+    "version": "2.0.3",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/primefaces/primeuix.git",
+      "directory": "packages/themes"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@primeuix/utils",
+    "version": "0.6.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/primefaces/primeuix.git",
+      "directory": "packages/utils"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@prisma/client",
+    "version": "5.12.1",
+    "license": "Apache-2.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/prisma/prisma.git",
+      "directory": "packages/client"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@prisma/debug",
+    "version": "5.12.1",
+    "license": "Apache-2.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/prisma/prisma.git",
+      "directory": "packages/debug"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@prisma/engines",
+    "version": "5.12.1",
+    "license": "Apache-2.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/prisma/prisma.git",
+      "directory": "packages/engines"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@prisma/engines-version",
+    "version": "5.12.0-21.473ed3124229e22d881cb7addf559799debae1ab",
+    "license": "Apache-2.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/prisma/engines-wrapper.git",
+      "directory": "packages/engines-version"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@prisma/fetch-engine",
+    "version": "5.12.1",
+    "license": "Apache-2.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/prisma/prisma.git",
+      "directory": "packages/fetch-engine"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "@prisma/get-platform",
+    "version": "5.12.1",
+    "license": "Apache-2.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/prisma/prisma.git",
+      "directory": "packages/get-platform"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "abstract-logging",
+    "version": "2.0.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/jsumners/abstract-logging.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "ajv",
+    "version": "8.20.0",
+    "license": "MIT",
+    "repository": "ajv-validator/ajv",
+    "noticeIncluded": true
+  },
+  {
+    "name": "ajv-formats",
+    "version": "3.0.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ajv-validator/ajv-formats.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "atomic-sleep",
+    "version": "1.0.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/davidmarkclements/atomic-sleep.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "avvio",
+    "version": "9.3.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/avvio.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "bcryptjs",
+    "version": "2.4.3",
+    "license": "MIT",
+    "repository": {
+      "type": "url",
+      "url": "https://github.com/dcodeIO/bcrypt.js.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "buffer-equal-constant-time",
+    "version": "1.0.1",
+    "license": "BSD-3-Clause",
+    "repository": "git@github.com:goinstant/buffer-equal-constant-time.git",
+    "noticeIncluded": true
+  },
+  {
+    "name": "cookie",
+    "version": "2.0.1",
+    "license": "MIT",
+    "repository": "jshttp/cookie",
+    "noticeIncluded": true
+  },
+  {
+    "name": "dequal",
+    "version": "2.0.3",
+    "license": "MIT",
+    "repository": "lukeed/dequal",
+    "noticeIncluded": true
+  },
+  {
+    "name": "dotenv",
+    "version": "16.4.5",
+    "license": "BSD-2-Clause",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/motdotla/dotenv.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "ecdsa-sig-formatter",
+    "version": "1.0.11",
+    "license": "Apache-2.0",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/Brightspace/node-ecdsa-sig-formatter.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "entities",
+    "version": "8.1.0",
+    "license": "BSD-2-Clause",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/fb55/entities.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "fast-decode-uri-component",
+    "version": "1.0.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/delvedor/fast-decode-uri-component.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "fast-deep-equal",
+    "version": "3.1.3",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/epoberezkin/fast-deep-equal.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "fast-json-stringify",
+    "version": "7.1.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/fast-json-stringify.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "fast-querystring",
+    "version": "1.1.2",
+    "license": "MIT",
+    "repository": {
+      "url": "git+https://github.com/anonrig/fast-querystring.git",
+      "type": "git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "fast-uri",
+    "version": "4.2.2",
+    "license": "BSD-3-Clause",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/fast-uri.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "fast-uri",
+    "version": "3.1.8",
+    "license": "BSD-3-Clause",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/fast-uri.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "fastify",
+    "version": "5.12.5",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/fastify.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "fastify-plugin",
+    "version": "6.0.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/fastify-plugin.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "fastq",
+    "version": "1.17.1",
+    "license": "ISC",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/mcollina/fastq.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "find-my-way",
+    "version": "9.10.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/delvedor/find-my-way.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "ip-address",
+    "version": "10.7.3",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/beaugunderson/ip-address.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "ipaddr.js",
+    "version": "2.5.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/whitequark/ipaddr.js.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "js-tokens",
+    "version": "4.0.0",
+    "license": "MIT",
+    "repository": "lydell/js-tokens",
+    "noticeIncluded": true
+  },
+  {
+    "name": "json-schema-ref-resolver",
+    "version": "3.0.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/json-schema-ref-resolver.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "json-schema-traverse",
+    "version": "1.0.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/epoberezkin/json-schema-traverse.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "jsonwebtoken",
+    "version": "9.0.2",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/auth0/node-jsonwebtoken"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "jwa",
+    "version": "1.4.2",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/brianloveswords/node-jwa.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "jws",
+    "version": "3.2.3",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/brianloveswords/node-jws.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "light-my-request",
+    "version": "6.8.0",
+    "license": "BSD-3-Clause",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/light-my-request.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "lodash.includes",
+    "version": "4.3.0",
+    "license": "MIT",
+    "repository": "lodash/lodash",
+    "noticeIncluded": true
+  },
+  {
+    "name": "lodash.isboolean",
+    "version": "3.0.3",
+    "license": "MIT",
+    "repository": "lodash/lodash",
+    "noticeIncluded": true
+  },
+  {
+    "name": "lodash.isinteger",
+    "version": "4.0.4",
+    "license": "MIT",
+    "repository": "lodash/lodash",
+    "noticeIncluded": true
+  },
+  {
+    "name": "lodash.isnumber",
+    "version": "3.0.3",
+    "license": "MIT",
+    "repository": "lodash/lodash",
+    "noticeIncluded": true
+  },
+  {
+    "name": "lodash.isplainobject",
+    "version": "4.0.6",
+    "license": "MIT",
+    "repository": "lodash/lodash",
+    "noticeIncluded": true
+  },
+  {
+    "name": "lodash.isstring",
+    "version": "4.0.1",
+    "license": "MIT",
+    "repository": "lodash/lodash",
+    "noticeIncluded": true
+  },
+  {
+    "name": "lodash.once",
+    "version": "4.1.1",
+    "license": "MIT",
+    "repository": "lodash/lodash",
+    "noticeIncluded": true
+  },
+  {
+    "name": "loose-envify",
+    "version": "1.4.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/zertosh/loose-envify.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "lru-cache",
+    "version": "6.0.0",
+    "license": "ISC",
+    "repository": "git://github.com/isaacs/node-lru-cache.git",
+    "noticeIncluded": true
+  },
+  {
+    "name": "ms",
+    "version": "2.1.2",
+    "license": "MIT",
+    "repository": "zeit/ms",
+    "noticeIncluded": true
+  },
+  {
+    "name": "nodemailer",
+    "version": "10.1.0",
+    "license": "MIT-0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/nodemailer/nodemailer.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "on-exit-leak-free",
+    "version": "2.1.2",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/mcollina/on-exit-or-gc.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "parse5",
+    "version": "8.0.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/inikulin/parse5.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "pino",
+    "version": "10.4.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/pinojs/pino.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "pino-abstract-transport",
+    "version": "3.0.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/pinojs/pino-abstract-transport.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "pino-std-serializers",
+    "version": "7.1.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/pinojs/pino-std-serializers.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "primeflex",
+    "version": "3.3.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/primefaces/primeflex.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "primeicons",
+    "version": "7.0.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/primefaces/primeicons.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "primeng",
+    "version": "20.4.0",
+    "license": "SEE LICENSE IN LICENSE.md",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/primefaces/primeng.git",
+      "directory": "packages/primeng"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "prisma",
+    "version": "5.12.1",
+    "license": "Apache-2.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/prisma/prisma.git",
+      "directory": "packages/cli"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "process-warning",
+    "version": "5.1.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/process-warning.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "quick-format-unescaped",
+    "version": "4.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/davidmarkclements/quick-format.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "react",
+    "version": "18.3.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/facebook/react.git",
+      "directory": "packages/react"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "react-dom",
+    "version": "18.3.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/facebook/react.git",
+      "directory": "packages/react-dom"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "real-require",
+    "version": "1.0.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/pinojs/real-require.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "require-from-string",
+    "version": "2.0.2",
+    "license": "MIT",
+    "repository": "floatdrop/require-from-string",
+    "noticeIncluded": true
+  },
+  {
+    "name": "ret",
+    "version": "0.5.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/fent/ret.js.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "reusify",
+    "version": "1.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/mcollina/reusify.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "rfdc",
+    "version": "1.3.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/davidmarkclements/rfdc.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "rxjs",
+    "version": "7.8.2",
+    "license": "Apache-2.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/reactivex/rxjs.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "safe-buffer",
+    "version": "5.2.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/feross/safe-buffer.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "safe-regex2",
+    "version": "5.1.2",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/safe-regex2.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "safe-stable-stringify",
+    "version": "2.4.3",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/BridgeAR/safe-stable-stringify.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "scheduler",
+    "version": "0.23.2",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/facebook/react.git",
+      "directory": "packages/scheduler"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "secure-json-parse",
+    "version": "4.1.1",
+    "license": "BSD-3-Clause",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fastify/secure-json-parse.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "semver",
+    "version": "7.6.0",
+    "license": "ISC",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/npm/node-semver.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "set-cookie-parser",
+    "version": "3.1.3",
+    "license": "MIT",
+    "repository": "nfriedly/set-cookie-parser",
+    "noticeIncluded": true
+  },
+  {
+    "name": "sonic-boom",
+    "version": "4.2.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/pinojs/sonic-boom.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "split2",
+    "version": "4.2.0",
+    "license": "ISC",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/mcollina/split2.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "thread-stream",
+    "version": "4.2.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/mcollina/thread-stream.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "toad-cache",
+    "version": "3.7.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/kibertoad/toad-cache.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "tslib",
+    "version": "2.8.1",
+    "license": "0BSD",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/Microsoft/tslib.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "yallist",
+    "version": "4.0.0",
+    "license": "ISC",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/isaacs/yallist.git"
+    },
+    "noticeIncluded": true
+  },
+  {
+    "name": "zone.js",
+    "version": "0.15.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/angular/angular.git",
+      "directory": "packages/zone.js"
+    },
+    "noticeIncluded": true
+  }
+]

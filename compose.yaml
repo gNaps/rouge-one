@@ -1,0 +1,67 @@
+name: rouge-one
+services:
+  db:
+    image: postgres:16.11-bookworm
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-rouge}
+      POSTGRES_DB: ${POSTGRES_DB:-rouge_one}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run pnpm run setup --config-only first}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+  migrate:
+    image: rouge-one-api:0.1.0
+    build:
+      context: .
+      dockerfile: infra/Dockerfile
+      target: api
+    env_file: .env.local
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-rouge}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-rouge_one}
+    command: [sh, -c, 'node apps/api/build/database/preflight.js && node scripts/prisma.mjs migrate deploy']
+    depends_on:
+      db:
+        condition: service_healthy
+  api:
+    image: rouge-one-api:0.1.0
+    build:
+      context: .
+      dockerfile: infra/Dockerfile
+      target: api
+    env_file: .env.local
+    environment:
+      HOST: 0.0.0.0
+      TRUST_PROXY: "true"
+      DATABASE_URL: postgresql://${POSTGRES_USER:-rouge}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-rouge_one}
+      SMTP_HOST: ${SMTP_HOST:-}
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: [CMD, node, -e, 'fetch("http://127.0.0.1:3000/api/health").then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+  web:
+    image: rouge-one-web:0.1.0
+    build:
+      context: .
+      dockerfile: infra/Dockerfile
+      target: web
+    ports: ['127.0.0.1:8080:80']
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+  mailpit:
+    image: axllent/mailpit:v1.27.8
+    profiles: [dev]
+    ports: ['127.0.0.1:8025:8025', '127.0.0.1:1025:1025']
+volumes:
+  postgres_data:
